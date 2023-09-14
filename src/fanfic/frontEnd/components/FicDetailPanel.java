@@ -81,9 +81,13 @@ public class FicDetailPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Fecha o painel de detalhes atual e mostra novamente a lista principal
         JPanel parentPanel = (JPanel) getParent();
         CardLayout cl = (CardLayout) parentPanel.getLayout();
         cl.show(parentPanel, "lista");
+        parentPanel.remove(this);
+        parentPanel.revalidate();
+        parentPanel.repaint();    
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

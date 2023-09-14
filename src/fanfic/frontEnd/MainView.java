@@ -18,17 +18,22 @@ public class MainView extends javax.swing.JFrame {
     
     private CardLayout cl;
 
-    /**
-     * Creates new form MainView
-     */
     public MainView() {
+        /**
+         * Tela principal a ser exibida ao rodar o programa
+         */
         initComponents();
         cl = (CardLayout) container.getLayout();
-        
         container.add("lista", new FicListPanel(this));        
     }
     
+    
     public void showFicDeatails(Fanfic fic){
+        /**
+         * Exibe o panel com as informações da Fanfiction
+         * 
+         * @param fic A fanfic que terá seus dados exibidos
+         */
         FicDetailPanel fp = new FicDetailPanel(fic);
         container.add("details",fp);
         cl.show(container, "details");
@@ -139,16 +144,15 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
-        // TODO criar tela 2
-        cl.show(container, "details");
+        // TODO criar logica de tirar fic da lista
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO criar tela 3
+        // TODO criar logica de editar fic da lista
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO criar tela 1
+        // TODO criar logic de adicionar fic na lista
     }//GEN-LAST:event_addBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
