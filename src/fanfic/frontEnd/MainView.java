@@ -14,16 +14,14 @@ import java.awt.CardLayout;
  * @author ma_fe
  */
 public class MainView extends javax.swing.JFrame {
-    private FicDetailPanel fdp;
-    
-    private CardLayout cl;
+    private final CardLayout CARD_LAYOUT;
 
     public MainView() {
         /**
          * Tela principal a ser exibida ao rodar o programa
          */
         initComponents();
-        cl = (CardLayout) container.getLayout();
+        CARD_LAYOUT = (CardLayout) container.getLayout();
         container.add("lista", new FicListPanel(this));        
     }
     
@@ -36,7 +34,7 @@ public class MainView extends javax.swing.JFrame {
          */
         FicDetailPanel fp = new FicDetailPanel(fic);
         container.add("details",fp);
-        cl.show(container, "details");
+        CARD_LAYOUT.show(container, "details");
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
