@@ -35,18 +35,8 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lista">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="9">
-                <StringItem index="0" value="FIC 1"/>
-                <StringItem index="1" value="FIC 2"/>
-                <StringItem index="2" value="Fic 3"/>
-                <StringItem index="3" value="FIC 1"/>
-                <StringItem index="4" value="FIC 2"/>
-                <StringItem index="5" value="Fic 3"/>
-                <StringItem index="6" value="FIC 1"/>
-                <StringItem index="7" value="FIC 2"/>
-                <StringItem index="8" value="Fic 3"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.AbstractListModel&lt;String&gt;() {&#xd;&#xa;String[] strings = GenerateFanficsTEMP.getNames();&#xd;&#xa;public int getSize() {return strings.length;}&#xd;&#xa;public String getElementAt(int i) {return strings[i];}&#xd;&#xa;}&#xd;&#xa;&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
             <Property name="fixedCellHeight" type="int" value="48"/>

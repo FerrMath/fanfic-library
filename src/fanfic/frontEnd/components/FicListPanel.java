@@ -4,9 +4,11 @@
  */
 package fanfic.frontEnd.components;
 
+import fanfic.GenerateFanficsTEMP;
 import fanfic.backEnd.logic.Fanfic;
 import fanfic.frontEnd.MainView;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -16,11 +18,14 @@ import javax.swing.JPanel;
 public class FicListPanel extends javax.swing.JPanel {
     
     private MainView mf;
+    private ArrayList<Fanfic> fics;
     
     public FicListPanel(MainView mainFrame) {
         this.mf = mainFrame;
+        this.fics = GenerateFanficsTEMP.generateFics();
         initComponents();
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,39 +34,42 @@ public class FicListPanel extends javax.swing.JPanel {
         lista = new javax.swing.JList<>();
 
         lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "FIC 1", "FIC 2", "Fic 3", "FIC 1", "FIC 2", "Fic 3", "FIC 1", "FIC 2", "Fic 3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        lista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lista.setFixedCellHeight(48);
-        lista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lista);
+            String[] strings = GenerateFanficsTEMP.getNames();
+            public int getSize() {return strings.length;}
+            public String getElementAt(int i) {return strings[i];}
+        }
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-        );
+    );
+    lista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    lista.setFixedCellHeight(48);
+    lista.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            listaMouseClicked(evt);
+        }
+    });
+    jScrollPane1.setViewportView(lista);
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+    );
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
-        
         // Pegando double click na lista
         if (evt.getClickCount() == 2){
             int row = lista.getSelectedIndex();
             JPanel parentPanel = (JPanel) getParent();
             CardLayout cl = (CardLayout) parentPanel.getLayout();
-            Fanfic fic = new Fanfic("Isso aqui"); // Temp
+            
+            // TODO pegar as informações da fic selecionada
+            Fanfic fic = fics.get(row);
             mf.showFicDeatails(fic);
         }
     }//GEN-LAST:event_listaMouseClicked

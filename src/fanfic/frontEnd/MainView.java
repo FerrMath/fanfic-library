@@ -28,7 +28,8 @@ public class MainView extends javax.swing.JFrame {
     
     public void showFicDeatails(Fanfic fic){
         /**
-         * Exibe o panel com as informações da Fanfiction
+         * Exibe o panel com as informações da Fanfiction após clicar duas vezes
+         * em um item da lista de fics
          * 
          * @param fic A fanfic que terá seus dados exibidos
          */
