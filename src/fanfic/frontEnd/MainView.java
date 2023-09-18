@@ -8,6 +8,8 @@ import fanfic.backEnd.logic.Fanfic;
 import fanfic.frontEnd.components.FicDetailPanel;
 import fanfic.frontEnd.components.FicListPanel;
 import java.awt.CardLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -15,6 +17,7 @@ import java.awt.CardLayout;
  */
 public class MainView extends javax.swing.JFrame {
     private final CardLayout CARD_LAYOUT;
+    private final FicListPanel LIST_PANEL;
 
     public MainView() {
         /**
@@ -22,7 +25,8 @@ public class MainView extends javax.swing.JFrame {
          */
         initComponents();
         CARD_LAYOUT = (CardLayout) container.getLayout();
-        container.add("lista", new FicListPanel(this));        
+        this.LIST_PANEL = new FicListPanel(this);
+        container.add("lista", LIST_PANEL);        
     }
     
     
@@ -36,6 +40,10 @@ public class MainView extends javax.swing.JFrame {
         FicDetailPanel fp = new FicDetailPanel(fic);
         container.add("details",fp);
         CARD_LAYOUT.show(container, "details");
+    }
+    
+    public void removeFic(){
+        LIST_PANEL.removeFic();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,7 +151,7 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
-        // TODO criar logica de tirar fic da lista
+        removeFic();
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed

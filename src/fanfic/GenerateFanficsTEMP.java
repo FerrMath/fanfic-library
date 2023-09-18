@@ -26,7 +26,7 @@ public class GenerateFanficsTEMP {
     
     public static ArrayList<Fanfic> generateFics(){
         ArrayList<Fanfic> list = new ArrayList<>();
-        
+         
         for (Fanfic fic:ficArray){
             list.add(fic);
         }
@@ -40,7 +40,7 @@ public class GenerateFanficsTEMP {
             li.add(fic.getName());
         }
         
-        String[] la = li.toArray(new String[0]); // Passando um array vazio como argumento
+        String[] la = li.toArray(new String[0]);
         return la;
     }
 }

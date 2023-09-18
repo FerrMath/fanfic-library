@@ -10,8 +10,8 @@ package fanfic.backEnd.logic;
  */
 public class Fanfic {
     private String name;
-    private String[] tags; // Talvez criar uma classe
-    private String[] comments; // Talvez criar uma classe 
+    private String[] tags; // Talvez criar uma classe para tag
+    private String[] comments; // Talvez criar uma classe para comentario
     
     public Fanfic (String n, String[] t){
         this.name = n;
@@ -25,6 +25,5 @@ public class Fanfic {
     public String[] getTags() {
         return tags;
     }
-    
-    
+        
 }
