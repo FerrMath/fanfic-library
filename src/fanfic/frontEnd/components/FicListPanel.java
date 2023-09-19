@@ -4,16 +4,13 @@
  */
 package fanfic.frontEnd.components;
 
-import fanfic.GenerateFanficsTEMP;
+import fanfic.backEnd.db.DbConnection;
 import fanfic.backEnd.logic.Fanfic;
 import fanfic.frontEnd.MainView;
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
 
 /**
  *
@@ -23,10 +20,12 @@ public class FicListPanel extends javax.swing.JPanel {
     
     private MainView mf;
     private ArrayList<Fanfic> fics;
+    private DbConnection db;
     
     public FicListPanel(MainView mainFrame) {
         this.mf = mainFrame;
-        this.fics = GenerateFanficsTEMP.generateFics();
+        this.db = new DbConnection();
+        this.fics = db.getFics();
         initComponents();
     }
     
@@ -55,10 +54,18 @@ public class FicListPanel extends javax.swing.JPanel {
             }
         );
     }
-
-
-        
     
+    public void removeFic() {
+        int row = lista.getSelectedIndex();
+        if (row > -1){
+            fics.remove(row);
+            updateList();
+        }        
+    }
+    
+    public void close() {
+        this.db.finishConnection();
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,7 +74,7 @@ public class FicListPanel extends javax.swing.JPanel {
         lista = new javax.swing.JList<>();
 
         lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = GenerateFanficsTEMP.getNames();
+            String[] strings = getNames();
             public int getSize() {return strings.length;}
             public String getElementAt(int i) {return strings[i];}
         }
@@ -113,11 +120,5 @@ public class FicListPanel extends javax.swing.JPanel {
     private javax.swing.JList<String> lista;
     // End of variables declaration//GEN-END:variables
 
-    public void removeFic() {
-        int row = lista.getSelectedIndex();
-        if (row > -1){
-            fics.remove(row);
-            updateList();
-        }        
-    }
+
 }

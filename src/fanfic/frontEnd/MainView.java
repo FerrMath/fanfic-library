@@ -8,8 +8,6 @@ import fanfic.backEnd.logic.Fanfic;
 import fanfic.frontEnd.components.FicDetailPanel;
 import fanfic.frontEnd.components.FicListPanel;
 import java.awt.CardLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  *
@@ -26,7 +24,7 @@ public class MainView extends javax.swing.JFrame {
         initComponents();
         CARD_LAYOUT = (CardLayout) container.getLayout();
         this.LIST_PANEL = new FicListPanel(this);
-        container.add("lista", LIST_PANEL);        
+        container.add("lista", LIST_PANEL);
     }
     
     
@@ -42,10 +40,6 @@ public class MainView extends javax.swing.JFrame {
         CARD_LAYOUT.show(container, "details");
     }
     
-    public void removeFic(){
-        LIST_PANEL.removeFic();
-    }
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -57,8 +51,13 @@ public class MainView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1040, 537));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                handleClosing(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -151,7 +150,7 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
-        removeFic();
+        LIST_PANEL.removeFic();
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -161,6 +160,11 @@ public class MainView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO criar logic de adicionar fic na lista
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void handleClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_handleClosing
+        this.LIST_PANEL.close();
+        dispose();
+    }//GEN-LAST:event_handleClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
