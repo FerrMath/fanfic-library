@@ -1,6 +1,6 @@
 package fanfic.frontEnd.components;
 
-import fanfic.backEnd.logic.Fanfic;
+import fanfic.backEnd.logic.Fanfiction;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -9,7 +9,7 @@ public class FicDetailPanel extends javax.swing.JPanel {
     private String[] tags;
     
     // TODO criar campos para os dados da fic
-    public FicDetailPanel(Fanfic fic) {
+    public FicDetailPanel(Fanfiction fic) {
         this.title = fic.getName();
         this.tags = fic.getTags();
         initComponents();

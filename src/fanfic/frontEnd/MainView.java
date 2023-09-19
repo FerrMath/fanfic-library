@@ -4,8 +4,9 @@
  */
 package fanfic.frontEnd;
 
-import fanfic.backEnd.logic.Fanfic;
+import fanfic.backEnd.logic.Fanfiction;
 import fanfic.frontEnd.components.FicDetailPanel;
+import fanfic.frontEnd.components.FicFormPanel;
 import fanfic.frontEnd.components.FicListPanel;
 import java.awt.CardLayout;
 
@@ -28,7 +29,7 @@ public class MainView extends javax.swing.JFrame {
     }
     
     
-    public void showFicDeatails(Fanfic fic){
+    public void showFicDeatails(Fanfiction fic){
         /**
          * Exibe o panel com as informações da Fanfiction após clicar duas vezes
          * em um item da lista de fics
@@ -159,6 +160,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO criar logic de adicionar fic na lista
+        container.add("add", new FicFormPanel(LIST_PANEL));
+        CARD_LAYOUT.show(container, "add");
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void handleClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_handleClosing

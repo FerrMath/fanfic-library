@@ -5,7 +5,7 @@
 package fanfic.frontEnd.components;
 
 import fanfic.backEnd.db.DbConnection;
-import fanfic.backEnd.logic.Fanfic;
+import fanfic.backEnd.logic.Fanfiction;
 import fanfic.frontEnd.MainView;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class FicListPanel extends javax.swing.JPanel {
     
     private MainView mf;
-    private ArrayList<Fanfic> fics;
+    private ArrayList<Fanfiction> fics;
     private DbConnection db;
     
     public FicListPanel(MainView mainFrame) {
@@ -35,7 +35,7 @@ public class FicListPanel extends javax.swing.JPanel {
     
     private String[] getNames(){
         ArrayList<String> li = new ArrayList<>();
-        for (Fanfic fic: fics){
+        for (Fanfiction fic: fics){
             li.add(fic.getName());
         }
         
@@ -55,12 +55,27 @@ public class FicListPanel extends javax.swing.JPanel {
         );
     }
     
+    public void addFicToList(){
+        db.addFic("Quantum entenglament", new String[]{}); // TEMP
+        this.fics = db.getFics();
+        updateList();
+    }
+    
     public void removeFic() {
         int row = lista.getSelectedIndex();
         if (row > -1){
             fics.remove(row);
             updateList();
         }        
+    }
+    
+    public Fanfiction getSelectedFic() {
+        int index = lista.getSelectedIndex();
+        if (index > -1){
+            return this.fics.get(index);
+        } else {
+            return null;
+        }
     }
     
     public void close() {
@@ -109,7 +124,7 @@ public class FicListPanel extends javax.swing.JPanel {
             CardLayout cl = (CardLayout) parentPanel.getLayout();
             
             // TODO pegar as informações da fic selecionada
-            Fanfic fic = fics.get(row);
+            Fanfiction fic = fics.get(row);
             mf.showFicDeatails(fic);
         }
     }//GEN-LAST:event_listaMouseClicked

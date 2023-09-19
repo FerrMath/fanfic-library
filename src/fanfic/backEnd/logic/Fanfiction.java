@@ -8,13 +8,13 @@ package fanfic.backEnd.logic;
  *
  * @author ma_fe
  */
-public class Fanfic {
+public class Fanfiction {
     private int id;
     private String name;
     private String[] tags; // Talvez criar uma classe para tag
     private String[] comments; // Talvez criar uma classe para comentario
     
-    public Fanfic (int id, String n, String[] t){
+    public Fanfiction (int id, String n, String[] t){
         this.name = n;
         this.tags = t;
     }
