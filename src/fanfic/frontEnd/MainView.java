@@ -5,8 +5,9 @@
 package fanfic.frontEnd;
 
 import fanfic.backEnd.logic.Fanfiction;
+import fanfic.frontEnd.components.EditFicFormPanel;
 import fanfic.frontEnd.components.FicDetailPanel;
-import fanfic.frontEnd.components.FicFormPanel;
+import fanfic.frontEnd.components.NewFicFormPanel;
 import fanfic.frontEnd.components.FicListPanel;
 import java.awt.CardLayout;
 
@@ -155,12 +156,15 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO criar logica de editar fic da lista
+        Fanfiction fic = LIST_PANEL.getSelectedFic();
+        if (fic == null) return;
+        container.add("edit", new EditFicFormPanel(LIST_PANEL, fic));
+        CARD_LAYOUT.show(container, "edit");
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO criar logic de adicionar fic na lista
-        container.add("add", new FicFormPanel(LIST_PANEL));
+        container.add("add", new NewFicFormPanel(LIST_PANEL));
         CARD_LAYOUT.show(container, "add");
     }//GEN-LAST:event_addBtnActionPerformed
 

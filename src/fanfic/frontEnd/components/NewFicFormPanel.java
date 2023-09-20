@@ -4,25 +4,24 @@
  */
 package fanfic.frontEnd.components;
 
+import fanfic.backEnd.errors.ExceptionHandler;
+import fanfic.backEnd.errors.exceptions.EmptyFormException;
 import fanfic.backEnd.logic.Fanfiction;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author ma_fe
  */
-public class FicFormPanel extends javax.swing.JPanel {
+public class NewFicFormPanel extends javax.swing.JPanel {
 
     private FicListPanel list;
     
-    public FicFormPanel(FicListPanel list,Fanfiction fic) {
-        this.list = list;
-        initComponents();
-        headerLbl.setText("Update");
-    }
     
-    public FicFormPanel(FicListPanel list){
+    public NewFicFormPanel(FicListPanel list){
         this.list = list;
         initComponents();
         headerLbl.setText("Add new fanfiction");
@@ -114,7 +113,24 @@ public class FicFormPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cxlBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        this.list.addFicToList();
+        Fanfiction f;
+        String title;
+        String[] tags;
+        ArrayList<String> tempTags = new ArrayList<>();
+        
+        try {
+            title = titleTF.getText();
+            tags = tagsTA.getText().split(",");
+
+            if (ExceptionHandler.haveEmptyFields(titleTF.getText(),tagsTA.getText())){
+                throw new EmptyFormException();
+            }
+        } catch (EmptyFormException e) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos para adicionar nova Fanfiction");
+            return;
+        }
+        
+        this.list.addFicToList(title, tags);
         this.close();
     }//GEN-LAST:event_addBtnActionPerformed
 

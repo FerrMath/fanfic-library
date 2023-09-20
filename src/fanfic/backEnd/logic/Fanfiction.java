@@ -17,6 +17,7 @@ public class Fanfiction {
     public Fanfiction (int id, String n, String[] t){
         this.name = n;
         this.tags = t;
+        this.id = id;
     }
 
     public String getName() {
@@ -26,5 +27,31 @@ public class Fanfiction {
     public String[] getTags() {
         return tags;
     }
+    
+    public String getStrTags() {
+        String str = "";
+        for (String s:tags){
+            if (s.equals(tags[tags.length - 1])){
+                str += s;
+            } else {
+                str += s + ", ";
+            }
+        }
+        return str;
+    }
+    
+    public int getId(){
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+    
+    
         
 }

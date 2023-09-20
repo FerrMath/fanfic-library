@@ -41,6 +41,15 @@ public class FicListPanel extends javax.swing.JPanel {
         
         String[] la = li.toArray(new String[0]);
         return la;
+        
+    }
+    
+    public void updateFic(String title, String[] tags){
+        Fanfiction f = fics.get(lista.getSelectedIndex());
+        f.setName(title);
+        f.setTags(tags);
+        db.updateFic(f);
+        updateList();
     }
     
     public void updateList(){
@@ -55,8 +64,8 @@ public class FicListPanel extends javax.swing.JPanel {
         );
     }
     
-    public void addFicToList(){
-        db.addFic("Quantum entenglament", new String[]{}); // TEMP
+    public void addFicToList(String title, String[] tags){
+        db.addFic(title, tags); // TEMP
         this.fics = db.getFics();
         updateList();
     }
@@ -64,9 +73,11 @@ public class FicListPanel extends javax.swing.JPanel {
     public void removeFic() {
         int row = lista.getSelectedIndex();
         if (row > -1){
+            Fanfiction f = fics.get(row);
+            db.removeFic(f);
             fics.remove(row);
             updateList();
-        }        
+        }
     }
     
     public Fanfiction getSelectedFic() {
@@ -134,6 +145,4 @@ public class FicListPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lista;
     // End of variables declaration//GEN-END:variables
-
-
 }
