@@ -23,7 +23,7 @@ public class DbConnection {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fic_library","teste","root"); // CHANGE TO YOUR USER AND PASSWORD
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fic_library","USER","PASSWORD"); // CHANGE TO YOUR USER AND PASSWORD
             this.stt = conn.createStatement();
             
         // TODO pegar id da fic escrita na db, passar para a classe, e da lista de Fanfictions posso acessar o id pra pegar os dados na db depois;
