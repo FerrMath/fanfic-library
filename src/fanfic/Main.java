@@ -10,6 +10,7 @@ import fanfic.frontEnd.MainView;
 public class Main {
 
     public static void main(String[] args) {
-        new MainView().setVisible(true);
+        MainView mv = new MainView();
+        mv.setVisible(true);
     }    
 }
