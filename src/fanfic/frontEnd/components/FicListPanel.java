@@ -49,9 +49,10 @@ public class FicListPanel extends javax.swing.JPanel {
         Tag[] tags;
         Fanfiction f = fics.get(lista.getSelectedIndex());
         
+        f.setName(title);
         db.updateFic(f, newTags);
         tags = db.getRelatedTags(f.getId());
-        f.setName(title);
+        
         f.setTags(tags);
         updateList();
     }
