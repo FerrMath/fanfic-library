@@ -6,6 +6,7 @@ package fanfic.frontEnd.components;
 
 import fanfic.backEnd.db.DbConnection;
 import fanfic.backEnd.logic.Fanfiction;
+import fanfic.backEnd.logic.Tag;
 import fanfic.frontEnd.MainView;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -44,11 +45,15 @@ public class FicListPanel extends javax.swing.JPanel {
         
     }
     
-    public void updateFic(String title, String[] tags){
+    public void updateFic(String title, String[] newTags){
+        Tag[] tags;
         Fanfiction f = fics.get(lista.getSelectedIndex());
+        
         f.setName(title);
+        db.updateFic(f, newTags);
+        tags = db.getRelatedTags(f.getId());
+        
         f.setTags(tags);
-        db.updateFic(f);
         updateList();
     }
     
@@ -65,7 +70,7 @@ public class FicListPanel extends javax.swing.JPanel {
     }
     
     public void addFicToList(String title, String[] tags){
-        db.addFic(title, tags); // TEMP
+        db.addFicEntry(title, tags); // TEMP
         this.fics = db.getFics();
         updateList();
     }
@@ -134,7 +139,6 @@ public class FicListPanel extends javax.swing.JPanel {
             JPanel parentPanel = (JPanel) getParent();
             CardLayout cl = (CardLayout) parentPanel.getLayout();
             
-            // TODO pegar as informações da fic selecionada
             Fanfiction fic = fics.get(row);
             mf.showFicDeatails(fic);
         }

@@ -11,10 +11,10 @@ package fanfic.backEnd.logic;
 public class Fanfiction {
     private int id;
     private String name;
-    private String[] tags; // Talvez criar uma classe para tag
+    private Tag[] tags; // TODO alterar toda a logica para class de tag
     private String[] comments; // Talvez criar uma classe para comentario
     
-    public Fanfiction (int id, String n, String[] t){
+    public Fanfiction (int id, String n, Tag[] t){
         this.name = n;
         this.tags = t;
         this.id = id;
@@ -24,17 +24,18 @@ public class Fanfiction {
         return name;
     }
 
-    public String[] getTags() {
+    public Tag[] getTags() {
         return tags;
     }
     
     public String getStrTags() {
         String str = "";
-        for (String s:tags){
-            if (s.equals(tags[tags.length - 1])){
-                str += s;
+        String lastString = tags[tags.length - 1].getName();
+        for (Tag s:tags){
+            if (s.getName().equals(lastString)){
+                str += s.getName();
             } else {
-                str += s + ", ";
+                str += s.getName() + ", ";
             }
         }
         return str;
@@ -48,10 +49,8 @@ public class Fanfiction {
         this.name = name;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(Tag[] tags) {
         this.tags = tags;
     }
-    
-    
-        
+            
 }

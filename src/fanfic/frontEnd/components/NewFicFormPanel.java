@@ -116,11 +116,10 @@ public class NewFicFormPanel extends javax.swing.JPanel {
         Fanfiction f;
         String title;
         String[] tags;
-        ArrayList<String> tempTags = new ArrayList<>();
         
         try {
             title = titleTF.getText();
-            tags = tagsTA.getText().split(",");
+            tags = tagsTA.getText().trim().split(",");
 
             if (ExceptionHandler.haveEmptyFields(titleTF.getText(),tagsTA.getText())){
                 throw new EmptyFormException();
@@ -130,7 +129,7 @@ public class NewFicFormPanel extends javax.swing.JPanel {
             return;
         }
         
-        this.list.addFicToList(title, tags);
+        this.list.addFicToList(title, tags); // Chamando na lista de fics
         this.close();
     }//GEN-LAST:event_addBtnActionPerformed
 
