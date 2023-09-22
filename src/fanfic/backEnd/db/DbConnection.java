@@ -90,6 +90,41 @@ public class DbConnection {
         addNewTagsToDb(tags);
         setRelatedTags(ficId, tags);
     }
+    
+    public void removeFic(Fanfiction f) {
+        try {
+            pstt = conn.prepareStatement("DELETE FROM fanfictions WHERE id=?");
+            pstt.setInt(1, f.getId());
+            int rows = pstt.executeUpdate();
+            if (rows > 0) {
+                JOptionPane.showMessageDialog(null, "Fanfic removida da lista");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro" + e.getMessage());
+        }
+    }
+    
+
+    public void updateFic(Fanfiction f, String[] newTags) {
+        try {
+            
+            pstt = conn.prepareStatement("UPDATE fanfictions SET name = ? WHERE id = ?");
+            pstt.setString(1, f.getName());
+            pstt.setInt(2, f.getId());
+            int rows = pstt.executeUpdate();
+            
+            addNewTagsToDb(newTags);
+            setRelatedTags(f.getId(), newTags);
+            
+            if (rows > 0){
+                System.out.println("Deu certo");
+            } else {
+                System.out.println("Não alterou");
+            }
+        } catch (SQLException e) {
+            System.out.println("Deu erro: " + e.getMessage());
+        }
+    }
 
     private int addFicName(String name) {
         int id = -1;
@@ -119,7 +154,7 @@ public class DbConnection {
             pstt = conn.prepareStatement("INSERT IGNORE INTO tags (name) VALUES (?)");
             stt = conn.createStatement();
             for (String t:tags){
-                pstt.setString(1, t);
+                pstt.setString(1, t.trim());
                 pstt.executeUpdate();
             }
         } catch (SQLException e) {
@@ -133,7 +168,7 @@ public class DbConnection {
         try {
             pstt = conn.prepareStatement("SELECT id FROM tags WHERE name = ?");
             for (String t:tags){
-                pstt.setString(1, t);
+                pstt.setString(1, t.trim());
                 result = pstt.executeQuery();
                 if (result.next()){
                     tagIds.add(result.getInt("id"));
@@ -154,40 +189,6 @@ public class DbConnection {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void removeFic(Fanfiction f) {
-        try {
-            pstt = conn.prepareStatement("DELETE FROM fanfictions WHERE id=?");
-            pstt.setInt(1, f.getId());
-            int rows = pstt.executeUpdate();
-            if (rows > 0) {
-                JOptionPane.showMessageDialog(null, "Fanfic removida da lista");
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro" + e.getMessage());
-        }
-    }
-    
-    public void updateFic(Fanfiction f) {
-        try {
-            pstt = conn.prepareStatement("UPDATE fanfictions SET name = ? WHERE id = ?");
-            pstt.setString(1, f.getName());
-            pstt.setInt(2, f.getId());
-            int rows = pstt.executeUpdate();
-//            addNewTagsToDb(f.getTags()); TEMP 
-            if (rows > 0){
-                System.out.println("Deu certo");
-            } else {
-                System.out.println("Não alterou");
-            }
-        } catch (SQLException e) {
-            System.out.println("Deu erro: " + e.getMessage());
-        }
-    }
-    
-
-    
- 
     
     public void finishConnection(){
         try {

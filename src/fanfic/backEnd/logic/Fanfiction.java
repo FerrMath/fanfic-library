@@ -30,11 +30,12 @@ public class Fanfiction {
     
     public String getStrTags() {
         String str = "";
+        String lastString = tags[tags.length - 1].getName();
         for (Tag s:tags){
-            if (s.getName().equals(tags[tags.length - 1])){
-                str += s;
+            if (s.getName().equals(lastString)){
+                str += s.getName();
             } else {
-                str += s + ", ";
+                str += s.getName() + ", ";
             }
         }
         return str;

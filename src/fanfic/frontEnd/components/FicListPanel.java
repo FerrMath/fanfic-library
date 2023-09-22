@@ -45,11 +45,14 @@ public class FicListPanel extends javax.swing.JPanel {
         
     }
     
-    public void updateFic(String title, Tag[] tags){
+    public void updateFic(String title, String[] newTags){
+        Tag[] tags;
         Fanfiction f = fics.get(lista.getSelectedIndex());
+        
+        db.updateFic(f, newTags);
+        tags = db.getRelatedTags(f.getId());
         f.setName(title);
         f.setTags(tags);
-        db.updateFic(f);
         updateList();
     }
     
@@ -135,7 +138,6 @@ public class FicListPanel extends javax.swing.JPanel {
             JPanel parentPanel = (JPanel) getParent();
             CardLayout cl = (CardLayout) parentPanel.getLayout();
             
-            // TODO pegar as informações da fic selecionada
             Fanfiction fic = fics.get(row);
             mf.showFicDeatails(fic);
         }

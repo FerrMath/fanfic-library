@@ -110,7 +110,6 @@ public class EditFicFormPanel extends javax.swing.JPanel {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         String title;
         String[] tags;
-        ArrayList<String> tempTags = new ArrayList<>();
         try {
             title = titleTF.getText();
             tags = tagsTA.getText().split(",");
@@ -124,7 +123,7 @@ public class EditFicFormPanel extends javax.swing.JPanel {
         }
         
         // TODO depois vejo o que é isso
-//        list.updateFic(title, tags);
+        list.updateFic(title, tags); // STR, STR[]
         this.close();
     }//GEN-LAST:event_addBtnActionPerformed
 
