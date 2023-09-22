@@ -1,12 +1,13 @@
 package fanfic.frontEnd.components;
 
 import fanfic.backEnd.logic.Fanfiction;
+import fanfic.backEnd.logic.Tag;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 public class FicDetailPanel extends javax.swing.JPanel {
     private String title;
-    private String[] tags;
+    private Tag[] tags;
     
     // TODO criar campos para os dados da fic
     public FicDetailPanel(Fanfiction fic) {
@@ -18,11 +19,12 @@ public class FicDetailPanel extends javax.swing.JPanel {
     // Gera informação de tags que serão exibidas
     private String getTags(){
         String s = "";
-        for (String tag:this.tags){
-            if (tag != this.tags[tags.length - 1]){
-                s += tag +", ";
+        String lastTag = this.tags[tags.length - 1].getName();
+        for (Tag tag:this.tags){
+            if (tag.getName().equals(lastTag)){
+                s += tag.getName();
             } else {
-                s += tag;
+                s += tag.getName() +", ";
             }
         }
         

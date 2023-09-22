@@ -122,7 +122,9 @@ public class EditFicFormPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos para editar a Fanfiction");
             return;
         }
-        list.updateFic(title, tags);
+        
+        // TODO depois vejo o que é isso
+//        list.updateFic(title, tags);
         this.close();
     }//GEN-LAST:event_addBtnActionPerformed
 
